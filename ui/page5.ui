@@ -50,108 +50,153 @@
     }
    </string>
   </property>
-  <layout class="QVBoxLayout" name="mainLayout">
-   <item>
-    <widget class="QLabel" name="titleLabel">
-     <property name="text">
-      <string>Create Course</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QFormLayout" name="formLayout">
-     <property name="labelAlignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-     <property name="formAlignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="horizontalSpacing">
-      <number>20</number>
-     </property>
-     <property name="verticalSpacing">
-      <number>20</number>
-     </property>
-     <item row="0" column="0">
-      <widget class="QLabel" name="courseTitleLabel">
-       <property name="text">
-        <string>Course Title</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="courseTitleInput">
-       <property name="minimumSize">
-        <size>
-         <width>400</width>
-         <height>0</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="descriptionLabel">
-       <property name="text">
-        <string>Description</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QTextEdit" name="descriptionInput">
-       <property name="minimumSize">
-        <size>
-         <width>400</width>
-         <height>200</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="buttonLayout">
-     <property name="spacing">
-      <number>20</number>
-     </property>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cancelBtn">
-       <property name="text">
-        <string>CANCEL</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="addCourseBtn">
-       <property name="text">
-        <string>ADD COURSE</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QPushButton" name="previousBtn">
-     <property name="text">
-      <string>PREVIOUS</string>
-     </property>
-    </widget>
-   </item>
-  </layout>
+  <widget class="QLabel" name="titleLabel">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>70</y>
+     <width>167</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Create Course</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="descriptionLabel">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>230</y>
+     <width>53</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Description</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="descriptionInput">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>230</y>
+     <width>851</width>
+     <height>201</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>400</width>
+     <height>200</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="courseTitleInput">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>140</y>
+     <width>851</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>400</width>
+     <height>0</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="courseTitleLabel">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>140</y>
+     <width>57</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Course Title</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelBtn">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>470</y>
+     <width>281</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CANCEL</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="addCourseBtn">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>470</y>
+     <width>281</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ADD COURSE</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="previousBtn">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>750</y>
+     <width>140</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* Style untuk tombol Previous */
+QPushButton#previousBtn {
+    background-color: #B39C8E;  /* Warna coklat muda */
+    color: white;  /* Warna teks putih */
+    border: none;  /* Hapus border */
+    border-radius: 20px;  /* Sudut melengkung */
+    padding: 8px 20px;  /* Padding vertical dan horizontal */
+    min-width: 100px;  /* Lebar minimum */
+    font-size: 14px;  /* Ukuran font */
+    font-weight: bold;  /* Tebal font */
+    text-transform: uppercase;  /* Huruf kapital */
+}
+
+/* Efek hover */
+QPushButton#previousBtn:hover {
+    background-color: #A08D7F;  /* Warna sedikit lebih gelap saat hover */
+    cursor: pointer;  /* Kursor berubah jadi pointer */
+}
+
+/* Efek saat diklik */
+QPushButton#previousBtn:pressed {
+    background-color: #8F7C6E;  /* Warna lebih gelap saat diklik */
+    padding-top: 9px;  /* Efek tombol ditekan */
+    padding-bottom: 7px;
+}
+
+/* Efek disabled */
+QPushButton#previousBtn:disabled {
+    background-color: #CCBEB4;  /* Warna lebih pudar saat disabled */
+    color: #E6E6E6;  /* Warna teks lebih pudar */
+}</string>
+   </property>
+   <property name="text">
+    <string>PREVIOUS</string>
+   </property>
+  </widget>
  </widget>
+ <resources/>
+ <connections/>
 </ui>

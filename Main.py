@@ -18,6 +18,7 @@ class MainWindow(QStackedWidget):
         self.page3 = uic.loadUi("ui/page3.ui")  # Login
         self.page4 = uic.loadUi("ui/page4.ui")  # Teacher Dashboard
         self.page5 = uic.loadUi("ui/page5.ui")  # Create Course
+        self.page6 = uic.loadUi("ui/page6.ui")  # Course Management
 
         # Add pages to stacked widget
         self.addWidget(self.page1)  # index 0: Welcome
@@ -25,6 +26,7 @@ class MainWindow(QStackedWidget):
         self.addWidget(self.page3)  # index 2: Login
         self.addWidget(self.page4)  # index 3: Teacher Dashboard
         self.addWidget(self.page5)  # index 4: Create Course
+        self.addWidget(self.page6)  # index 5: Course Management
 
         # Initialize current user
         self.current_user = None
@@ -50,8 +52,8 @@ class MainWindow(QStackedWidget):
         """Setup connections for register page"""
         self.selected_role = None
         self.page2.btnSignIn.clicked.connect(self.register_action)
-        self.page2.btnTeacher.clicked.connect(lambda: self.select_role("teacher"))
-        self.page2.btnStudent.clicked.connect(lambda: self.select_role("student"))
+        self.page2.teacherRadio.clicked.connect(lambda: self.select_role("teacher"))
+        self.page2.studentRadio.clicked.connect(lambda: self.select_role("student"))
         self.page2.linkLogin.mousePressEvent = lambda event: self.goto_login()
 
     def setup_login_page(self):
@@ -103,6 +105,7 @@ class MainWindow(QStackedWidget):
 
     def show_management(self):
         """Show course management page"""
+        self.setCurrentIndex(5)
         print("Course management page - To be implemented")
 
     def logout_action(self):

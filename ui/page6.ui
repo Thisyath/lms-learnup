@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ManagementCourse</class>
+ <widget class="QWidget" name="ManagementCourse">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+   QWidget {
+       background-color: #DCE6D1;
+   }
+   QLabel#titleLabel {
+       color: #B39C8E;
+       font-size: 24px;
+       font-weight: bold;
+   }
+   QComboBox {
+       background-color: #98AC78;
+       border: none;
+       border-radius: 5px;
+       padding: 5px;
+       color: white;
+       min-width: 200px;
+   }
+   QComboBox::drop-down {
+       border: none;
+   }
+   QComboBox::down-arrow {
+       image: url(down_arrow.png);
+       width: 12px;
+       height: 12px;
+   }
+   QPushButton {
+       background-color: #98AC78;
+       border: none;
+       border-radius: 5px;
+       color: white;
+       padding: 8px 16px;
+   }
+   QPushButton:hover {
+       background-color: #7D8F5C;
+   }
+   QPushButton#previousBtn {
+       background-color: #B39C8E;
+       border-radius: 15px;
+   }
+   QPushButton#addBtn {
+       background-color: #B39C8E;
+       min-width: 60px;
+   }
+   QLineEdit {
+       background-color: white;
+       border: 1px solid #98AC78;
+       border-radius: 5px;
+       padding: 5px;
+   }
+   QGroupBox {
+       border: 2px solid #98AC78;
+       border-radius: 10px;
+       margin-top: 10px;
+       font-weight: bold;
+   }
+   QGroupBox::title {
+       color: #666666;
+       subcontrol-origin: margin;
+       subcontrol-position: top center;
+       padding: 0 3px;
+       background-color: #DCE6D1;
+   }
+   QTextEdit {
+       background-color: white;
+       border: 1px solid #98AC78;
+       border-radius: 5px;
+   }
+   </string>
+  </property>
+  <widget class="QLabel" name="titleLabel">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>40</y>
+     <width>244</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Management Course</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="previousBtn">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>750</y>
+     <width>140</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* Style untuk tombol Previous */
+QPushButton#previousBtn {
+    background-color: #B39C8E;  /* Warna coklat muda */
+    color: white;  /* Warna teks putih */
+    border: none;  /* Hapus border */
+    border-radius: 20px;  /* Sudut melengkung */
+    padding: 8px 20px;  /* Padding vertical dan horizontal */
+    min-width: 100px;  /* Lebar minimum */
+    font-size: 14px;  /* Ukuran font */
+    font-weight: bold;  /* Tebal font */
+    text-transform: uppercase;  /* Huruf kapital */
+}
+
+/* Efek hover */
+QPushButton#previousBtn:hover {
+    background-color: #A08D7F;  /* Warna sedikit lebih gelap saat hover */
+    cursor: pointer;  /* Kursor berubah jadi pointer */
+}
+
+/* Efek saat diklik */
+QPushButton#previousBtn:pressed {
+    background-color: #8F7C6E;  /* Warna lebih gelap saat diklik */
+    padding-top: 9px;  /* Efek tombol ditekan */
+    padding-bottom: 7px;
+}
+
+/* Efek disabled */
+QPushButton#previousBtn:disabled {
+    background-color: #CCBEB4;  /* Warna lebih pudar saat disabled */
+    color: #E6E6E6;  /* Warna teks lebih pudar */
+}</string>
+   </property>
+   <property name="text">
+    <string>PREVIOUS</string>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="enrollmentGroup">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>190</y>
+     <width>371</width>
+     <height>431</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Enrollment</string>
+   </property>
+   <layout class="QVBoxLayout" name="enrollmentLayout">
+    <item>
+     <widget class="QLineEdit" name="emailInput">
+      <property name="placeholderText">
+       <string>Email</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="addEnrollBtn">
+      <property name="text">
+       <string>Add</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="enrollmentList"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="assignmentGroup">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>190</y>
+     <width>381</width>
+     <height>431</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Assignment</string>
+   </property>
+   <layout class="QVBoxLayout" name="assignmentLayout">
+    <item>
+     <layout class="QHBoxLayout" name="addAssignmentLayout">
+      <item>
+       <widget class="QLabel" name="addFileLabel">
+        <property name="text">
+         <string>Add File (PDF)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="selectAssignmentBtn">
+        <property name="text">
+         <string>Select File</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QComboBox" name="deadlineCombo">
+      <property name="placeholderText" stdset="0">
+       <string>Deadline</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="assignmentList"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="contentGroup">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>190</y>
+     <width>371</width>
+     <height>431</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Course Content</string>
+   </property>
+   <layout class="QVBoxLayout" name="contentLayout">
+    <item>
+     <layout class="QHBoxLayout" name="addContentLayout">
+      <item>
+       <widget class="QLabel" name="addContentLabel">
+        <property name="text">
+         <string>Add Content</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="selectFileBtn">
+        <property name="text">
+         <string>Select File</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="contentInputLayout">
+      <item>
+       <widget class="QLineEdit" name="contentInput"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="addContentBtn">
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="contentList"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>110</y>
+     <width>309</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="courseSelectLayout">
+    <item>
+     <widget class="QLabel" name="selectLabel">
+      <property name="text">
+       <string>Select Course :</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="courseComboBox"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
