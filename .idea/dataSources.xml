@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="database" uuid="f77429c4-9327-47a3-8efa-d2edaed6cc70">
+    <data-source source="LOCAL" name="database" uuid="6e76ccc9-f649-4460-bf99-a9a6f1d53446">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\MSI-GAMING\PycharmProjects\LU PBO\database.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\MSI-GAMING\PycharmProjects\copy tubes\database.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>

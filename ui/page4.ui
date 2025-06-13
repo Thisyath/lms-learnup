@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TeacherDashboard</class>
+ <widget class="QMainWindow" name="TeacherDashboard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1200</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Learn Up! - Teacher Dashboard</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="sidebar">
+      <property name="minimumSize">
+       <size>
+        <width>250</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>250</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame#sidebar {
+	background-color: #E7EEC1;
+}
+
+QLabel#profileImage {
+	background-color: #95A978;
+	border-radius: 60px;
+}
+
+QLabel#teacherName {
+	color: #444444;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+QPushButton {
+	background-color: #95A978;
+	color: white;
+	text-align: left;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+QPushButton:hover {
+	background-color: #7C8F60;
+}
+
+QPushButton#logoutBtn {
+	background-color: transparent;
+	color: #0066CC;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <property name="leftMargin">
+        <number>20</number>
+       </property>
+       <property name="topMargin">
+        <number>30</number>
+       </property>
+       <property name="rightMargin">
+        <number>20</number>
+       </property>
+       <property name="bottomMargin">
+        <number>30</number>
+       </property>
+       <item>
+        <layout class="QVBoxLayout" name="profileLayout">
+         <property name="spacing">
+          <number>10</number>
+         </property>
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="profileImage">
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>120</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>120</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="teacherName">
+           <property name="text">
+            <string>Thisyath</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="dashboardBtn">
+         <property name="text">
+          <string>Dashboard</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="createCourseBtn">
+         <property name="text">
+          <string>Create Course</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="managementBtn">
+         <property name="text">
+          <string>Management Course</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="logoutBtn">
+         <property name="text">
+          <string>LOG OUT</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="mainContent">
+      <property name="styleSheet">
+       <string notr="true">QFrame#mainContent {
+	background-color: white;
+}
+
+QFrame.statsCard {
+	background-color: #F0F0F0;
+	border-radius: 10px;
+}
+
+QLabel.statsTitle {
+	color: #0066CC;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+QLabel.statsValue {
+	color: #444444;
+	font-size: 36px;
+	font-weight: bold;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="leftMargin">
+        <number>30</number>
+       </property>
+       <property name="topMargin">
+        <number>30</number>
+       </property>
+       <property name="rightMargin">
+        <number>30</number>
+       </property>
+       <property name="bottomMargin">
+        <number>30</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="statsLayout">
+         <property name="spacing">
+          <number>30</number>
+         </property>
+         <item>
+          <widget class="QFrame" name="coursesCard">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>150</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #F0F0F0;
+border-radius: 10px;</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QLabel" name="coursesTitle">
+              <property name="styleSheet">
+               <string notr="true">color: #0066CC;
+font-size: 16px;
+font-weight: bold;</string>
+              </property>
+              <property name="text">
+               <string>Total Courses</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="coursesValue">
+              <property name="styleSheet">
+               <string notr="true">color: #444444;
+font-size: 36px;
+font-weight: bold;</string>
+              </property>
+              <property name="text">
+               <string>5</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="studentsCard">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>150</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #F0F0F0;
+border-radius: 10px;</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="studentsTitle">
+              <property name="styleSheet">
+               <string notr="true">color: #0066CC;
+font-size: 16px;
+font-weight: bold;</string>
+              </property>
+              <property name="text">
+               <string>Total Student</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="studentsValue">
+              <property name="styleSheet">
+               <string notr="true">color: #444444;
+font-size: 36px;
+font-weight: bold;</string>
+              </property>
+              <property name="text">
+               <string>120</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="assignmentsCard">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>150</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #F0F0F0;
+border-radius: 10px;</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QLabel" name="assignmentsTitle">
+              <property name="styleSheet">
+               <string notr="true">color: #0066CC;
+font-size: 16px;
+font-weight: bold;</string>
+              </property>
+              <property name="text">
+               <string>Pending Assignments</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="assignmentsValue">
+              <property name="styleSheet">
+               <string notr="true">color: #444444;
+font-size: 36px;
+font-weight: bold;</string>
+              </property>
+              <property name="text">
+               <string>8</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -40,7 +40,7 @@ def init_db():
     cur.execute('''
     CREATE TABLE IF NOT EXISTS Course (
         course_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
+        title TEXT NOT NULL,
         deskripsi TEXT,
         teacher_id INTEGER NOT NULL,
         FOREIGN KEY (teacher_id) REFERENCES Teacher(teacher_id)
