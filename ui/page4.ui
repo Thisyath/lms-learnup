@@ -91,100 +91,93 @@ QPushButton#logoutBtn {
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <property name="spacing">
-        <number>15</number>
+      <widget class="QPushButton" name="dashboardBtn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>230</y>
+         <width>221</width>
+         <height>61</height>
+        </rect>
        </property>
-       <property name="leftMargin">
-        <number>20</number>
+       <property name="text">
+        <string>Dashboard</string>
        </property>
-       <property name="topMargin">
-        <number>30</number>
+      </widget>
+      <widget class="QPushButton" name="createCourseBtn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>310</y>
+         <width>221</width>
+         <height>61</height>
+        </rect>
        </property>
-       <property name="rightMargin">
-        <number>20</number>
+       <property name="text">
+        <string>Create Course</string>
        </property>
-       <property name="bottomMargin">
-        <number>30</number>
+      </widget>
+      <widget class="QPushButton" name="managementBtn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>390</y>
+         <width>221</width>
+         <height>61</height>
+        </rect>
        </property>
-       <item>
-        <layout class="QVBoxLayout" name="profileLayout">
-         <property name="spacing">
-          <number>10</number>
-         </property>
-         <item alignment="Qt::AlignHCenter">
-          <widget class="QLabel" name="profileImage">
-           <property name="minimumSize">
-            <size>
-             <width>120</width>
-             <height>120</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>120</width>
-             <height>120</height>
-            </size>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item alignment="Qt::AlignHCenter">
-          <widget class="QLabel" name="teacherName">
-           <property name="text">
-            <string>Thisyath</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QPushButton" name="dashboardBtn">
-         <property name="text">
-          <string>Dashboard</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="createCourseBtn">
-         <property name="text">
-          <string>Create Course</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="managementBtn">
-         <property name="text">
-          <string>Management Course</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QPushButton" name="logoutBtn">
-         <property name="text">
-          <string>LOG OUT</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+       <property name="text">
+        <string>Management Course</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="logoutBtn">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>720</y>
+         <width>97</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>LOG OUT</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="teacherName">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>170</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Thisyath</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="profilTeacher">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>20</y>
+         <width>131</width>
+         <height>131</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>../../../Downloads/profilTeacher.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
     </item>
     <item>
@@ -217,160 +210,177 @@ QLabel.statsValue {
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <property name="leftMargin">
-        <number>30</number>
+      <widget class="QFrame" name="assignmentsCard">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>30</y>
+         <width>261</width>
+         <height>201</height>
+        </rect>
        </property>
-       <property name="topMargin">
-        <number>30</number>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>150</height>
+        </size>
        </property>
-       <property name="rightMargin">
-        <number>30</number>
-       </property>
-       <property name="bottomMargin">
-        <number>30</number>
-       </property>
-       <item>
-        <layout class="QHBoxLayout" name="statsLayout">
-         <property name="spacing">
-          <number>30</number>
-         </property>
-         <item>
-          <widget class="QFrame" name="coursesCard">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>150</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: #F0F0F0;
+       <property name="styleSheet">
+        <string notr="true">background-color: #F0F0F0;
 border-radius: 10px;</string>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_3">
-            <item>
-             <widget class="QLabel" name="coursesTitle">
-              <property name="styleSheet">
-               <string notr="true">color: #0066CC;
+       </property>
+       <widget class="QLabel" name="assignmentsTitle">
+        <property name="geometry">
+         <rect>
+          <x>9</x>
+          <y>9</y>
+          <width>174</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #0066CC;
 font-size: 16px;
 font-weight: bold;</string>
-              </property>
-              <property name="text">
-               <string>Total Courses</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="coursesValue">
-              <property name="styleSheet">
-               <string notr="true">color: #444444;
+        </property>
+        <property name="text">
+         <string>Pending Assignments</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="assignmentsValue">
+        <property name="geometry">
+         <rect>
+          <x>9</x>
+          <y>78</y>
+          <width>23</width>
+          <height>43</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #444444;
 font-size: 36px;
 font-weight: bold;</string>
-              </property>
-              <property name="text">
-               <string>5</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="studentsCard">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>150</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: #F0F0F0;
+        </property>
+        <property name="text">
+         <string>8</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QFrame" name="coursesCard">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>30</y>
+         <width>261</width>
+         <height>201</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>150</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #F0F0F0;
 border-radius: 10px;</string>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
-            <item>
-             <widget class="QLabel" name="studentsTitle">
-              <property name="styleSheet">
-               <string notr="true">color: #0066CC;
+       </property>
+       <widget class="QLabel" name="coursesTitle">
+        <property name="geometry">
+         <rect>
+          <x>9</x>
+          <y>9</y>
+          <width>112</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #0066CC;
 font-size: 16px;
 font-weight: bold;</string>
-              </property>
-              <property name="text">
-               <string>Total Student</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="studentsValue">
-              <property name="styleSheet">
-               <string notr="true">color: #444444;
+        </property>
+        <property name="text">
+         <string>Total Courses</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="coursesValue">
+        <property name="geometry">
+         <rect>
+          <x>9</x>
+          <y>78</y>
+          <width>23</width>
+          <height>43</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #444444;
 font-size: 36px;
 font-weight: bold;</string>
-              </property>
-              <property name="text">
-               <string>120</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="assignmentsCard">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>150</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: #F0F0F0;
+        </property>
+        <property name="text">
+         <string>5</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QFrame" name="studentsCard">
+       <property name="geometry">
+        <rect>
+         <x>320</x>
+         <y>30</y>
+         <width>251</width>
+         <height>201</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>150</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #F0F0F0;
 border-radius: 10px;</string>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_5">
-            <item>
-             <widget class="QLabel" name="assignmentsTitle">
-              <property name="styleSheet">
-               <string notr="true">color: #0066CC;
+       </property>
+       <widget class="QLabel" name="studentsTitle">
+        <property name="geometry">
+         <rect>
+          <x>9</x>
+          <y>9</y>
+          <width>112</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #0066CC;
 font-size: 16px;
 font-weight: bold;</string>
-              </property>
-              <property name="text">
-               <string>Pending Assignments</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="assignmentsValue">
-              <property name="styleSheet">
-               <string notr="true">color: #444444;
+        </property>
+        <property name="text">
+         <string>Total Student</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="studentsValue">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>9</x>
+          <y>78</y>
+          <width>69</width>
+          <height>43</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #444444;
 font-size: 36px;
 font-weight: bold;</string>
-              </property>
-              <property name="text">
-               <string>8</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
+        </property>
+        <property name="text">
+         <string>120</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </item>
    </layout>

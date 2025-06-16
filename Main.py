@@ -63,9 +63,8 @@ class MainWindow(QStackedWidget):
     def setup_teacher_dashboard(self):
         """Setup teacher dashboard page"""
         # Set profile image placeholder
-        pixmap = QPixmap(120, 120)
-        pixmap.fill(Qt.transparent)
-        self.page4.profileImage.setPixmap(pixmap)
+        pixmap = QPixmap("assets/profilTeacher.png")
+        self.page4.profilTeacher.setPixmap(pixmap)
 
         # Connect dashboard buttons
         self.page4.dashboardBtn.clicked.connect(self.show_dashboard)

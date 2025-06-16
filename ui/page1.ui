@@ -213,7 +213,7 @@ QPushButton:hover {
    <property name="text">
     <string>
 Di Learn Up!
-Temukan pengalaman belajar yang seru, interaktif, dan penuh inspirasi di sini. zMari mulai perjalanan belajar Anda bersama Learn Up dan capai potensi terbaik Anda!</string>
+Temukan pengalaman belajar yang seru, interaktif, dan penuh inspirasi di sini. Mari mulai perjalanan belajar Anda bersama Learn Up dan capai potensi terbaik Anda!</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
