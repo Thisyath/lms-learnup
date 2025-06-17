@@ -19,8 +19,6 @@ def init_db():
     CREATE TABLE IF NOT EXISTS Student (
         student_id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
-        kelas TEXT,
-        tahun TEXT,
         FOREIGN KEY (user_id) REFERENCES User(user_id)
     );
     ''')
@@ -30,8 +28,6 @@ def init_db():
     CREATE TABLE IF NOT EXISTS Teacher (
         teacher_id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
-        departemen TEXT,
-        spesialisasi TEXT,
         FOREIGN KEY (user_id) REFERENCES User(user_id)
     );
     ''')
@@ -86,16 +82,7 @@ def init_db():
     );
     ''')
 
-    # Material Table (optional, can be removed if not needed)
-    cur.execute('''
-    CREATE TABLE IF NOT EXISTS Material (
-        material_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        file_url TEXT,
-        course_id INTEGER NOT NULL,
-        FOREIGN KEY (course_id) REFERENCES Course(course_id)
-    );
-    ''')
+
 
     conn.commit()
     conn.close()

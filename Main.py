@@ -20,6 +20,7 @@ class MainWindow(QStackedWidget):
         self.page4 = uic.loadUi("ui/page4.ui")  # Teacher Dashboard
         self.page5 = uic.loadUi("ui/page5.ui")  # Create Course
         self.page6 = uic.loadUi("ui/page6.ui")  # Course Management
+        self.page7 = uic.loadUi("ui/page7.ui")  # Student Dashboard
 
         # Add pages to stacked widget
         self.addWidget(self.page1)  # index 0: Welcome
@@ -28,6 +29,7 @@ class MainWindow(QStackedWidget):
         self.addWidget(self.page4)  # index 3: Teacher Dashboard
         self.addWidget(self.page5)  # index 4: Create Course
         self.addWidget(self.page6)  # index 5: Course Management
+        self.addWidget(self.page7)  # index 6: Student Dashboard
 
         # Initialize current user
         self.current_user = None
@@ -39,6 +41,7 @@ class MainWindow(QStackedWidget):
         self.setup_login_page()
         self.setup_teacher_dashboard()
         self.setup_create_course()
+        self.setup_student_dashboard()
 
         # Set window properties
         self.setWindowTitle("Learn Up App")
@@ -63,11 +66,9 @@ class MainWindow(QStackedWidget):
 
     def setup_teacher_dashboard(self):
         """Setup teacher dashboard page"""
-        # Set profile image placeholder
         pixmap = QPixmap("assets/profilTeacher.png")
         self.page4.profilTeacher.setPixmap(pixmap)
 
-        # Connect dashboard buttons
         self.page4.dashboardBtn.clicked.connect(self.show_dashboard)
         self.page4.createCourseBtn.clicked.connect(self.show_create_course)
         self.page4.managementBtn.clicked.connect(self.show_management)
@@ -78,6 +79,15 @@ class MainWindow(QStackedWidget):
         self.page5.addCourseBtn.clicked.connect(self.add_course_action)
         self.page5.cancelBtn.clicked.connect(lambda: self.setCurrentIndex(3))
         self.page5.previousBtn.clicked.connect(lambda: self.setCurrentIndex(3))
+
+    def setup_student_dashboard(self):
+        """Setup student dashboard page"""
+        pixmap = QPixmap("assets/profilTeacher.png")
+        self.page7.profilTeacher.setPixmap(pixmap)
+
+        self.page7.dashboardBtn.clicked.connect(self.show_student_dashboard)
+        self.page7.myCourseBtn.clicked.connect(lambda: self.setCurrentIndex(6))
+        self.page7.logoutBtn.clicked.connect(self.logout_action)
 
     def goto_register(self):
         """Navigate to register page"""
@@ -97,6 +107,12 @@ class MainWindow(QStackedWidget):
         if self.current_user:
             self.load_teacher_stats(self.current_user)
 
+    def show_student_dashboard(self):
+        """Show student dashboard"""
+        self.setCurrentIndex(6)
+        if self.current_user:
+            self.load_student_stats(self.current_user)
+
     def show_create_course(self):
         """Show create course page"""
         self.page5.courseTitleInput.clear()
@@ -106,7 +122,6 @@ class MainWindow(QStackedWidget):
     def show_management(self):
         """Show course management page"""
         self.setCurrentIndex(5)
-        print("Course management page - To be implemented")
 
     def logout_action(self):
         """Handle logout"""
@@ -118,6 +133,52 @@ class MainWindow(QStackedWidget):
             self.current_user = None
             self.current_role = None
             self.setCurrentIndex(0)
+
+    def load_student_stats(self, username):
+        """Load statistics for student dashboard"""
+        try:
+            conn = sqlite3.connect(DB_FILENAME)
+            cur = conn.cursor()
+
+            # Get student_id
+            cur.execute("""
+                        SELECT s.student_id
+                        FROM Student s
+                                 JOIN User u ON s.user_id = u.user_id
+                        WHERE u.username = ?
+                        """, (username,))
+            student_id = cur.fetchone()[0]
+
+            # Get total enrolled courses
+            cur.execute("""
+                        SELECT COUNT(*)
+                        FROM Enrollment
+                        WHERE student_id = ?
+                        """, (student_id,))
+            total_courses = cur.fetchone()[0]
+
+            # Get pending assignments
+            cur.execute("""
+                        SELECT COUNT(*)
+                        FROM Assignment a
+                                 JOIN Course c ON a.course_id = c.course_id
+                                 JOIN Enrollment e ON c.course_id = e.course_id
+                        WHERE e.student_id = ?
+                          AND a.due_date > datetime('now')
+                        """, (student_id,))
+            pending_assignments = cur.fetchone()[0]
+
+            conn.close()
+
+            # Update dashboard stats
+            self.page7.totalCoursesValue.setText(str(total_courses))
+            self.page7.pendingAssignmentValue.setText(str(pending_assignments))
+            self.page7.studentName.setText(self.current_user)
+
+        except sqlite3.Error as e:
+            print(f"Database error: {e}")
+            self.page7.totalCoursesValue.setText("0")
+            self.page7.pendingAssignmentValue.setText("0")
 
     def load_teacher_stats(self, username):
         """Load statistics for teacher dashboard"""
@@ -146,9 +207,7 @@ class MainWindow(QStackedWidget):
             cur.execute("""
                         SELECT COUNT(DISTINCT student_id)
                         FROM Enrollment
-                        WHERE course_id IN (SELECT course_id
-                                            FROM Course
-                                            WHERE teacher_id = ?)
+                        WHERE course_id IN (SELECT course_id FROM Course WHERE teacher_id = ?)
                         """, (teacher_id,))
             total_students = cur.fetchone()[0]
 
@@ -157,13 +216,12 @@ class MainWindow(QStackedWidget):
             # Update dashboard stats
             self.page4.coursesValue.setText(str(total_courses))
             self.page4.studentsValue.setText(str(total_students))
-
+            self.page4.teacherName.setText(self.current_user)
 
         except sqlite3.Error as e:
             print(f"Database error: {e}")
             self.page4.coursesValue.setText("0")
             self.page4.studentsValue.setText("0")
-            self.page4.assignmentsValue.setText("0")
 
     def register_action(self):
         """Handle user registration"""
@@ -244,8 +302,9 @@ class MainWindow(QStackedWidget):
                 self.load_teacher_stats(username)
                 self.show_dashboard()
             else:
-                # TODO: Implement student dashboard
-                pass
+                self.page7.studentName.setText(username)
+                self.load_student_stats(username)
+                self.show_student_dashboard()
         else:
             QMessageBox.warning(self, "Login Failed", "Invalid username or password!")
 

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <widget class="QLabel" name="labelCourseName">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>10</y>
+     <width>143</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string>font-size: 24px; color: #8B7355;</string>
+   </property>
+   <property name="text">
+    <string>Course Name</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelDescription">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>40</y>
+     <width>90</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string>color: #666;</string>
+   </property>
+   <property name="text">
+    <string>Course Description</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelContent">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>63</y>
+     <width>139</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string>font-size: 16px; color: #4169E1;</string>
+   </property>
+   <property name="text">
+    <string>COURSE CONTENT</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="listContent">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>88</y>
+     <width>731</width>
+     <height>291</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string>border: 1px solid #ddd; border-radius: 5px;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelAssignment">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>390</y>
+     <width>99</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string>font-size: 16px; color: #4169E1;</string>
+   </property>
+   <property name="text">
+    <string>ASSIGNMENT</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnPrevious">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>740</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#btnPrevious {
+    background-color: #C4A484;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 16px;
+    margin: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 100px;
+    max-width: 150px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Previous</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="listContent_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>420</y>
+     <width>731</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string>border: 1px solid #ddd; border-radius: 5px;</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>80</y>
+     <width>421</width>
+     <height>691</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget {
+    background-color: #FFFFFF;
+    alternate-background-color: #F5F5F5;
+    border: 2px solid #C4A484;
+    border-radius: 10px;
+    padding: 5px;
+    gridline-color: #E8D5C4;
+}
+
+QTableWidget::item {
+    padding: 10px;
+    border-bottom: 1px solid #E8D5C4;
+}
+
+QTableWidget::item:selected {
+    background-color: #E8F3D6;
+    color: #8B7355;
+}
+
+QHeaderView::section {
+    background-color: #C4A484;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    border-right: 1px solid #B38B6D;
+}
+
+QHeaderView::section:first {
+    border-top-left-radius: 8px;
+}
+
+QHeaderView::section:last {
+    border-top-right-radius: 8px;
+    border-right: none;
+}
+
+QTableWidget::item:hover {
+    background-color: #F0F7E6;
+}
+
+/* Scrollbar styling */
+QScrollBar:vertical {
+    border: none;
+    background-color: #F5F5F5;
+    width: 10px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #C4A484;
+    border-radius: 5px;
+    min-height: 30px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #B38B6D;
+}</string>
+   </property>
+   <column>
+    <property name="text">
+     <string>Tugas</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Deadline</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Submit</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Nilai</string>
+    </property>
+   </column>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

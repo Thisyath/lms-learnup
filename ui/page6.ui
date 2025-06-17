@@ -375,11 +375,6 @@ QTableCornerButton::section {
     </column>
     <column>
      <property name="text">
-      <string>Deskripsi</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
       <string>Waktu</string>
      </property>
     </column>
