@@ -1,6 +1,7 @@
 import sys
+import os
 import sqlite3
-from PyQt5.QtWidgets import QApplication, QStackedWidget, QMessageBox
+from PyQt5.QtWidgets import QApplication, QStackedWidget, QMessageBox, QFileDialog, QTableWidgetItem
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
@@ -151,23 +152,12 @@ class MainWindow(QStackedWidget):
                         """, (teacher_id,))
             total_students = cur.fetchone()[0]
 
-            # Get pending assignments
-            cur.execute("""
-                        SELECT COUNT(*)
-                        FROM Assignment
-                        WHERE course_id IN (SELECT course_id
-                                            FROM Course
-                                            WHERE teacher_id = ?)
-                          AND due_date > datetime('now')
-                        """, (teacher_id,))
-            pending_assignments = cur.fetchone()[0]
-
             conn.close()
 
             # Update dashboard stats
             self.page4.coursesValue.setText(str(total_courses))
             self.page4.studentsValue.setText(str(total_students))
-            self.page4.assignmentsValue.setText(str(pending_assignments))
+
 
         except sqlite3.Error as e:
             print(f"Database error: {e}")

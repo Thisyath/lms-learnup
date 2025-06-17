@@ -210,69 +210,13 @@ QLabel.statsValue {
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QFrame" name="assignmentsCard">
-       <property name="geometry">
-        <rect>
-         <x>590</x>
-         <y>30</y>
-         <width>261</width>
-         <height>201</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>150</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: #F0F0F0;
-border-radius: 10px;</string>
-       </property>
-       <widget class="QLabel" name="assignmentsTitle">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>9</y>
-          <width>174</width>
-          <height>19</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: #0066CC;
-font-size: 16px;
-font-weight: bold;</string>
-        </property>
-        <property name="text">
-         <string>Pending Assignments</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="assignmentsValue">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>78</y>
-          <width>23</width>
-          <height>43</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: #444444;
-font-size: 36px;
-font-weight: bold;</string>
-        </property>
-        <property name="text">
-         <string>8</string>
-        </property>
-       </widget>
-      </widget>
       <widget class="QFrame" name="coursesCard">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>60</x>
          <y>30</y>
-         <width>261</width>
-         <height>201</height>
+         <width>341</width>
+         <height>241</height>
         </rect>
        </property>
        <property name="minimumSize">
@@ -325,10 +269,10 @@ font-weight: bold;</string>
       <widget class="QFrame" name="studentsCard">
        <property name="geometry">
         <rect>
-         <x>320</x>
+         <x>420</x>
          <y>30</y>
-         <width>251</width>
-         <height>201</height>
+         <width>361</width>
+         <height>241</height>
         </rect>
        </property>
        <property name="minimumSize">

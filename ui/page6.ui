@@ -96,7 +96,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="previousBtn">
+  <widget class="QPushButton" name="btnPrevious">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -163,14 +163,75 @@ QPushButton#previousBtn:disabled {
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="addEnrollBtn">
+     <widget class="QPushButton" name="btnAddEnroll">
       <property name="text">
        <string>Add</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QTextEdit" name="enrollmentList"/>
+     <widget class="QTableWidget" name="tableEnrollment">
+      <property name="styleSheet">
+       <string notr="true">QTableWidget, QTableView {
+    background-color: #E6EDD7;   /* Hijau muda utama */
+    alternate-background-color: #D1E2B6; /* Hijau muda lain untuk baris selang-seling */
+    gridline-color: #98AC78;     /* Hijau medium untuk garis */
+    border: 1px solid #98AC78;
+    font-size: 14px;
+    color: #5B4636;
+    selection-background-color: #B4C99A; /* Hijau olive untuk seleksi */
+    selection-color: #333;
+}
+
+QHeaderView::section {
+    background-color: #98AC78;   /* Hijau medium untuk header */
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    border: 1px solid #7D8F5C;
+    padding: 6px;
+}
+
+QTableCornerButton::section {
+    background-color: #98AC78;
+    border: 1px solid #7D8F5C;
+}</string>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderHighlightSections">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderHighlightSections">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Username</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Email</string>
+       </property>
+      </column>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -186,36 +247,187 @@ QPushButton#previousBtn:disabled {
    <property name="title">
     <string>Assignment</string>
    </property>
-   <layout class="QVBoxLayout" name="assignmentLayout">
-    <item>
-     <layout class="QHBoxLayout" name="addAssignmentLayout">
-      <item>
-       <widget class="QLabel" name="addFileLabel">
-        <property name="text">
-         <string>Add File (PDF)</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="selectAssignmentBtn">
-        <property name="text">
-         <string>Select File</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QComboBox" name="deadlineCombo">
-      <property name="placeholderText" stdset="0">
-       <string>Deadline</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QTextEdit" name="assignmentList"/>
-    </item>
-   </layout>
+   <widget class="QTextEdit" name="listAssignment">
+    <property name="geometry">
+     <rect>
+      <x>11</x>
+      <y>99</y>
+      <width>359</width>
+      <height>157</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="dateEdit">
+    <property name="geometry">
+     <rect>
+      <x>11</x>
+      <y>58</y>
+      <width>291</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QDateEdit {
+    background-color: #98AC78;
+    color: white;
+    border: 2px solid #7D8F5C;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 120px;
+}
+
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 28px;
+    border-left: 1px solid #7D8F5C;
+    background-color: #7D8F5C;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+QDateEdit::down-arrow {
+    image: url(:/icons/down-arrow-white.png); /* Ganti dengan path ikon panah Anda, atau hapus baris ini untuk default */
+    width: 16px;
+    height: 16px;
+}
+
+QDateEdit:focus {
+    border: 2px solid #4C5B36;
+    background-color: #B4C99A;
+    color: #333;
+}
+
+QDateEdit::hover {
+    background-color: #B4C99A;
+}
+
+QDateEdit::up-button, QDateEdit::down-button {
+    background: transparent;
+    width: 0px;
+    height: 0px;
+}
+
+QCalendarWidget QToolButton {
+    background-color: #98AC78;
+    color: white;
+    border-radius: 5px;
+    margin: 2px;
+    font-weight: bold;
+}
+QCalendarWidget QWidget {
+    alternate-background-color: #EAF2DF;
+}
+QCalendarWidget QAbstractItemView {
+    selection-background-color: #7D8F5C;
+    selection-color: white;
+    background-color: #F5F8ED;
+    outline: none;
+}</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>11</x>
+      <y>262</y>
+      <width>359</width>
+      <height>158</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget, QTableView {
+    background-color: #E6EDD7;   /* Hijau muda utama */
+    alternate-background-color: #D1E2B6; /* Hijau muda lain untuk baris selang-seling */
+    gridline-color: #98AC78;     /* Hijau medium untuk garis */
+    border: 1px solid #98AC78;
+    font-size: 14px;
+    color: #5B4636;
+    selection-background-color: #B4C99A; /* Hijau olive untuk seleksi */
+    selection-color: #333;
+}
+
+QHeaderView::section {
+    background-color: #98AC78;   /* Hijau medium untuk header */
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    border: 1px solid #7D8F5C;
+    padding: 6px;
+}
+
+QTableCornerButton::section {
+    background-color: #98AC78;
+    border: 1px solid #7D8F5C;
+}</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>Nama</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Tugas</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Deskripsi</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Waktu</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Nilai</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="btnAddAssignment">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>60</y>
+      <width>51</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnSelectAssignmentFile">
+    <property name="geometry">
+     <rect>
+      <x>176</x>
+      <y>22</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select File</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="addFileLabel">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>22</y>
+      <width>68</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add File (PDF)</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="contentGroup">
    <property name="geometry">
@@ -240,7 +452,7 @@ QPushButton#previousBtn:disabled {
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="selectFileBtn">
+       <widget class="QPushButton" name="btnSelectContentFile">
         <property name="text">
          <string>Select File</string>
         </property>
@@ -254,7 +466,7 @@ QPushButton#previousBtn:disabled {
        <widget class="QLineEdit" name="contentInput"/>
       </item>
       <item>
-       <widget class="QPushButton" name="addContentBtn">
+       <widget class="QPushButton" name="btnAddContent">
         <property name="text">
          <string>Add</string>
         </property>
@@ -263,17 +475,17 @@ QPushButton#previousBtn:disabled {
      </layout>
     </item>
     <item>
-     <widget class="QTextEdit" name="contentList"/>
+     <widget class="QTextEdit" name="listContent"/>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>460</x>
      <y>110</y>
      <width>309</width>
-     <height>28</height>
+     <height>37</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="courseSelectLayout">
@@ -285,7 +497,52 @@ QPushButton#previousBtn:disabled {
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="courseComboBox"/>
+     <widget class="QComboBox" name="courseComboBox">
+      <property name="styleSheet">
+       <string notr="true">QComboBox {
+    background-color: #98AC78;
+    color: #fff;
+    border: 2px solid #7D8F5C;
+    border-radius: 8px;
+    padding: 6px 36px 6px 12px;  /* Space for arrow on the right */
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 160px;
+}
+QComboBox:hover, QComboBox:focus {
+    background-color: #B4C99A;
+    color: #333;
+    border: 2px solid #5C7042;
+}
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 28px;
+    border-left: 1px solid #7D8F5C;
+    background: #7D8F5C;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+QComboBox::down-arrow {
+    width: 0;
+    height: 0;
+    margin-right: 8px;
+    margin-top: 4px;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 10px solid #fff; /* Arrow color */
+    /* No image needed, this is a pure CSS triangle */
+}
+QComboBox QAbstractItemView {
+    background: #EAF2DF;
+    selection-background-color: #98AC78;
+    color: #333;
+    border: 2px solid #7D8F5C;
+    border-radius: 6px;
+    font-size: 14px;
+}</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
