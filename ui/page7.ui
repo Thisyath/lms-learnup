@@ -130,22 +130,6 @@ QPushButton#logoutBtn {
         <string>LOG OUT</string>
        </property>
       </widget>
-      <widget class="QLabel" name="studentName">
-       <property name="geometry">
-        <rect>
-         <x>40</x>
-         <y>170</y>
-         <width>161</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Thisyath</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
       <widget class="QLabel" name="profilTeacher">
        <property name="geometry">
         <rect>
@@ -163,6 +147,30 @@ QPushButton#logoutBtn {
        </property>
        <property name="scaledContents">
         <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="studentName">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>170</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #667E45;
+font-size: 20px;
+font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+font-weight: bold;
+letter-spacing: 2px;
+text-shadow: 0 2px 8px #e0e0e0;</string>
+       </property>
+       <property name="text">
+        <string>Thisyath</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </widget>
@@ -234,7 +242,7 @@ font-weight: bold;</string>
          <string>Total Courses</string>
         </property>
        </widget>
-       <widget class="QLabel" name="coursesValue">
+       <widget class="QLabel" name="totalCoursesValue">
         <property name="geometry">
          <rect>
           <x>9</x>
@@ -290,7 +298,7 @@ font-weight: bold;</string>
          <string>Pending Assignment</string>
         </property>
        </widget>
-       <widget class="QLabel" name="studentsValue">
+       <widget class="QLabel" name="pendingAssignmentValue">
         <property name="enabled">
          <bool>true</bool>
         </property>

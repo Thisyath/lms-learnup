@@ -60,7 +60,6 @@ def init_db():
     cur.execute('''
     CREATE TABLE IF NOT EXISTS Assignment (
         assignment_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
         due_date TEXT,
         course_id INTEGER NOT NULL,
         FOREIGN KEY (course_id) REFERENCES Course(course_id)

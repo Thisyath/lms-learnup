@@ -9,7 +9,7 @@ class TeacherController:
         conn = sqlite3.connect(self.db_path)
         cur = conn.cursor()
         cur.execute(
-            "INSERT INTO Teacher (user_id, departemen, spesialisasi) VALUES (?, ?, ?)",
+            "INSERT INTO Teacher (user_id) VALUES (?, ?, ?)",
             (user_id, departemen, spesialisasi)
         )
         conn.commit()

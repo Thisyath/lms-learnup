@@ -146,11 +146,19 @@ QPushButton#logoutBtn {
       <widget class="QLabel" name="teacherName">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>30</x>
          <y>170</y>
          <width>161</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #667E45;
+font-size: 20px;
+font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+font-weight: bold;
+letter-spacing: 2px;
+text-shadow: 0 2px 8px #e0e0e0;</string>
        </property>
        <property name="text">
         <string>Thisyath</string>

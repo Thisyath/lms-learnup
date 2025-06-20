@@ -156,7 +156,7 @@ QPushButton#previousBtn:disabled {
    </property>
    <layout class="QVBoxLayout" name="enrollmentLayout">
     <item>
-     <widget class="QLineEdit" name="emailInput">
+     <widget class="QLineEdit" name="lineEmail">
       <property name="placeholderText">
        <string>Email</string>
       </property>
@@ -247,16 +247,6 @@ QTableCornerButton::section {
    <property name="title">
     <string>Assignment</string>
    </property>
-   <widget class="QTextEdit" name="listAssignment">
-    <property name="geometry">
-     <rect>
-      <x>11</x>
-      <y>99</y>
-      <width>359</width>
-      <height>157</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QDateEdit" name="dateEdit">
     <property name="geometry">
      <rect>
@@ -327,8 +317,18 @@ QCalendarWidget QAbstractItemView {
     outline: none;
 }</string>
     </property>
+    <property name="dateTime">
+     <datetime>
+      <hour>0</hour>
+      <minute>0</minute>
+      <second>0</second>
+      <year>2025</year>
+      <month>1</month>
+      <day>1</day>
+     </datetime>
+    </property>
    </widget>
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QTableWidget" name="tableSubmission">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -397,7 +397,7 @@ QTableCornerButton::section {
      <string>Add</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnSelectAssignmentFile">
+   <widget class="QPushButton" name="btnSelectFile2">
     <property name="geometry">
      <rect>
       <x>176</x>
@@ -421,6 +421,16 @@ QTableCornerButton::section {
     </property>
     <property name="text">
      <string>Add File (PDF)</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listAssignment">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>361</width>
+      <height>161</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -447,7 +457,7 @@ QTableCornerButton::section {
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnSelectContentFile">
+       <widget class="QPushButton" name="btnSelectFile1">
         <property name="text">
          <string>Select File</string>
         </property>
@@ -458,7 +468,7 @@ QTableCornerButton::section {
     <item>
      <layout class="QHBoxLayout" name="contentInputLayout">
       <item>
-       <widget class="QLineEdit" name="contentInput"/>
+       <widget class="QLineEdit" name="lineYoutube"/>
       </item>
       <item>
        <widget class="QPushButton" name="btnAddContent">
@@ -470,7 +480,7 @@ QTableCornerButton::section {
      </layout>
     </item>
     <item>
-     <widget class="QTextEdit" name="listContent"/>
+     <widget class="QListWidget" name="listContent"/>
     </item>
    </layout>
   </widget>
@@ -492,7 +502,7 @@ QTableCornerButton::section {
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="courseComboBox">
+     <widget class="QComboBox" name="comboSelectCourse">
       <property name="styleSheet">
        <string notr="true">QComboBox {
     background-color: #98AC78;

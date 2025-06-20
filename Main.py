@@ -9,7 +9,6 @@ from datetime import datetime
 
 DB_FILENAME = "database.db"
 
-
 class MainWindow(QStackedWidget):
     def __init__(self):
         super().__init__()
@@ -41,6 +40,7 @@ class MainWindow(QStackedWidget):
         self.setup_login_page()
         self.setup_teacher_dashboard()
         self.setup_create_course()
+        self.setup_course_management()
         self.setup_student_dashboard()
 
         # Set window properties
@@ -69,9 +69,9 @@ class MainWindow(QStackedWidget):
         pixmap = QPixmap("assets/profilTeacher.png")
         self.page4.profilTeacher.setPixmap(pixmap)
 
-        self.page4.dashboardBtn.clicked.connect(self.show_dashboard)
+        self.page4.dashboardBtn.clicked.connect(self.show_teacher_dashboard)
         self.page4.createCourseBtn.clicked.connect(self.show_create_course)
-        self.page4.managementBtn.clicked.connect(self.show_management)
+        self.page4.managementBtn.clicked.connect(self.show_course_management)
         self.page4.logoutBtn.clicked.connect(self.logout_action)
 
     def setup_create_course(self):
@@ -79,6 +79,222 @@ class MainWindow(QStackedWidget):
         self.page5.addCourseBtn.clicked.connect(self.add_course_action)
         self.page5.cancelBtn.clicked.connect(lambda: self.setCurrentIndex(3))
         self.page5.previousBtn.clicked.connect(lambda: self.setCurrentIndex(3))
+
+    def setup_course_management(self):
+        """Setup course management page"""
+        # Course Content
+        self.page6.btnSelectFile1.clicked.connect(self.select_content_file)
+        self.page6.btnAddContent.clicked.connect(self.add_content)
+
+        # Assignment
+        self.page6.btnSelectFile2.clicked.connect(self.select_assignment_file)
+        self.page6.btnAddAssignment.clicked.connect(self.add_assignment)
+        self.page6.dateEdit.setCalendarPopup(True)  # Enable calendar popup
+
+        # Enrollment
+        self.page6.btnAddEnroll.clicked.connect(self.add_enrollment)
+
+        # Navigation
+        self.page6.btnPrevious.clicked.connect(lambda: self.setCurrentIndex(3))
+
+        # Course selection
+        self.page6.comboSelectCourse.currentIndexChanged.connect(self.load_course_data)
+
+    def select_content_file(self):
+        path, _ = QFileDialog.getOpenFileName(self, "Select PDF File", "", "PDF Files (*.pdf)")
+        if path:
+            self.selected_content_file = path
+            self.page6.btnSelectFile1.setText(os.path.basename(path))
+
+    def add_content(self):
+        if not hasattr(self, 'selected_content_file'):
+            QMessageBox.warning(self, "Error", "Please select a file first!")
+            return
+        course_id = self.page6.comboSelectCourse.currentData()
+        youtube_url = self.page6.lineYoutube.text().strip()
+
+        if not os.path.exists("materials"):
+            os.makedirs("materials")
+
+        pdf_filename = f"{course_id}_{int(datetime.now().timestamp())}_{os.path.basename(self.selected_content_file)}"
+        dest_path = os.path.join("materials", pdf_filename)
+
+        with open(self.selected_content_file, "rb") as src, open(dest_path, "wb") as dst:
+            dst.write(src.read())
+
+        conn = sqlite3.connect(DB_FILENAME)
+        cur = conn.cursor()
+        cur.execute("""
+                    INSERT INTO CourseMaterial (assignment_id)
+                    VALUES (?, ?, ?, datetime('now'))
+                    """, (course_id, pdf_filename, youtube_url))
+        conn.commit()
+        conn.close()
+
+        self.load_content_history(course_id)
+        QMessageBox.information(self, "Success", "Content added successfully!")
+
+    def select_assignment_file(self):
+        path, _ = QFileDialog.getOpenFileName(self, "Select PDF File", "", "PDF Files (*.pdf)")
+        if path:
+            self.selected_assignment_file = path
+            self.page6.btnSelectFile2.setText(os.path.basename(path))
+
+    def add_assignment(self):
+        if not hasattr(self, 'selected_assignment_file'):
+            QMessageBox.warning(self, "Error", "Please select a file first!")
+            return
+
+        course_id = self.page6.comboSelectCourse.currentData()
+        deadline = self.page6.dateEdit.date().toString("yyyy-MM-dd")
+
+        if not os.path.exists("assignments"):
+            os.makedirs("assignments")
+
+        pdf_filename = f"{course_id}_{int(datetime.now().timestamp())}_{os.path.basename(self.selected_assignment_file)}"
+        dest_path = os.path.join("assignments", pdf_filename)
+
+        with open(self.selected_assignment_file, "rb") as src, open(dest_path, "wb") as dst:
+            dst.write(src.read())
+
+        conn = sqlite3.connect(DB_FILENAME)
+        cur = conn.cursor()
+        cur.execute("""
+                    INSERT INTO Assignment (course_id, pdf_file, due_date, created_at)
+                    VALUES (?, ?, ?, datetime('now'))
+                    """, (course_id, pdf_filename, deadline))
+        conn.commit()
+        conn.close()
+
+        self.load_assignment_history(course_id)
+        QMessageBox.information(self, "Success", "Assignment added successfully!")
+
+    def add_enrollment(self):
+        course_id = self.page6.comboSelectCourse.currentData()
+        email = self.page6.lineEmail.text().strip()
+
+        if not email:
+            QMessageBox.warning(self, "Error", "Please enter student email!")
+            return
+
+        conn = sqlite3.connect(DB_FILENAME)
+        cur = conn.cursor()
+
+        # Check if email exists and is a student
+        cur.execute("""
+                    SELECT s.student_id
+                    FROM Student s
+                             JOIN User u ON s.user_id = u.user_id
+                    WHERE u.email = ?
+                    """, (email,))
+
+        result = cur.fetchone()
+        if not result:
+            QMessageBox.warning(self, "Error", "Email not found or not a student!")
+            conn.close()
+            return
+
+        student_id = result[0]
+
+        # Check if already enrolled
+        cur.execute("SELECT * FROM Enrollment WHERE course_id=? AND student_id=?",
+                    (course_id, student_id))
+        if cur.fetchone():
+            QMessageBox.warning(self, "Error", "Student already enrolled!")
+            conn.close()
+            return
+
+        # Enroll student
+        cur.execute("""
+                    INSERT INTO Enrollment (course_id, student_id, enrolled_at)
+                    VALUES (?, ?, datetime('now'))
+                    """, (course_id, student_id))
+
+        conn.commit()
+        conn.close()
+
+        self.load_enrollments(course_id)
+        QMessageBox.information(self, "Success", "Student enrolled successfully!")
+
+    def load_course_data(self):
+        course_id = self.page6.comboSelectCourse.currentData()
+        if course_id:
+            self.load_content_history(course_id)
+            self.load_assignment_history(course_id)
+            self.load_enrollments(course_id)
+            self.load_submissions(course_id)
+
+    def load_content_history(self, course_id):
+        self.page6.listContent.clear()
+        conn = sqlite3.connect(DB_FILENAME)
+        cur = conn.cursor()
+        cur.execute("""
+                    SELECT pdf_file, youtube_url, created_at
+                    FROM CourseMaterial
+                    WHERE course_id = ?
+                    ORDER BY created_at DESC
+                    """, (course_id,))
+        for row in cur.fetchall():
+            self.page6.listContent.addItem(f"PDF: {row[0]} | YouTube: {row[1]} | Added: {row[2]}")
+        conn.close()
+
+    def load_assignment_history(self, course_id):
+        self.page6.listAssignment.clear()
+        conn = sqlite3.connect(DB_FILENAME)
+        cur = conn.cursor()
+        cur.execute("""
+                    SELECT pdf_file, due_date, created_at
+                    FROM Assignment
+                    WHERE course_id = ?
+                    ORDER BY created_at DESC
+                    """, (course_id,))
+        for row in cur.fetchall():
+            self.page6.listAssignment.addItem(f"File: {row[0]} | Due: {row[1]} | Added: {row[2]}")
+        conn.close()
+
+    def load_submissions(self, course_id):
+        table = self.page6.tableSubmission
+        table.setRowCount(0)
+        conn = sqlite3.connect(DB_FILENAME)
+        cur = conn.cursor()
+        cur.execute("""
+                    SELECT u.username, a.pdf_file, s.submission_time, s.grade
+                    FROM AssignmentSubmission s
+                             JOIN Assignment a ON s.assignment_id = a.assignment_id
+                             JOIN Student st ON s.student_id = st.student_id
+                             JOIN User u ON st.user_id = u.user_id
+                    WHERE a.course_id = ?
+                    ORDER BY s.submission_time DESC
+                    """, (course_id,))
+        for row in cur.fetchall():
+            pos = table.rowCount()
+            table.insertRow(pos)
+            for i, val in enumerate(row):
+                item = QTableWidgetItem(str(val) if val is not None else "")
+                if i == 4:  # Grade column
+                    item.setFlags(item.flags() | Qt.ItemIsEditable)
+                table.setItem(pos, i, item)
+        conn.close()
+
+    def load_enrollments(self, course_id):
+        table = self.page6.tableEnrollment
+        table.setRowCount(0)
+        conn = sqlite3.connect(DB_FILENAME)
+        cur = conn.cursor()
+        cur.execute("""
+                    SELECT u.username, u.email
+                    FROM Enrollment e
+                             JOIN Student s ON e.student_id = s.student_id
+                             JOIN User u ON s.user_id = u.user_id
+                    WHERE e.course_id = ?
+                    """, (course_id,))
+        for row in cur.fetchall():
+            pos = table.rowCount()
+            table.insertRow(pos)
+            for i, val in enumerate(row):
+                table.setItem(pos, i, QTableWidgetItem(str(val)))
+        conn.close()
+
 
     def setup_student_dashboard(self):
         """Setup student dashboard page"""
@@ -101,7 +317,7 @@ class MainWindow(QStackedWidget):
         """Set selected role for registration"""
         self.selected_role = role
 
-    def show_dashboard(self):
+    def show_teacher_dashboard(self):
         """Show teacher dashboard"""
         self.setCurrentIndex(3)
         if self.current_user:
@@ -119,7 +335,7 @@ class MainWindow(QStackedWidget):
         self.page5.descriptionInput.clear()
         self.setCurrentIndex(4)
 
-    def show_management(self):
+    def show_course_management(self):
         """Show course management page"""
         self.setCurrentIndex(5)
 
@@ -300,7 +516,7 @@ class MainWindow(QStackedWidget):
             if role == 'teacher':
                 self.page4.teacherName.setText(username)
                 self.load_teacher_stats(username)
-                self.show_dashboard()
+                self.show_teacher_dashboard()
             else:
                 self.page7.studentName.setText(username)
                 self.load_student_stats(username)
@@ -343,7 +559,7 @@ class MainWindow(QStackedWidget):
             self.load_teacher_stats(self.current_user)
 
             QMessageBox.information(self, "Success", "Course created successfully!")
-            self.show_dashboard()
+            self.show_teacher_dashboard()
 
         except sqlite3.Error as e:
             print(f"Database error: {e}")
