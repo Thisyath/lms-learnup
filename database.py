@@ -48,21 +48,36 @@ def init_db():
     cur.execute('''
     CREATE TABLE IF NOT EXISTS Enrollment (
         enrollment_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        student_id INTEGER NOT NULL,
         course_id INTEGER NOT NULL,
-        FOREIGN KEY (student_id) REFERENCES Student(student_id),
+        student_id INTEGER NOT NULL,
+        enrolled_at TEXT NOT NULL,
         FOREIGN KEY (course_id) REFERENCES Course(course_id),
-        UNIQUE(student_id, course_id)
+        FOREIGN KEY (student_id) REFERENCES Student(student_id),
+        UNIQUE(course_id, student_id) -- Tidak boleh double enroll
     );
+    ''')
+
+    # CourseMaterial
+    cur.execute('''
+    CREATE TABLE IF NOT EXISTS CourseMaterial (
+        material_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        course_id INTEGER NOT NULL,
+        pdf_file TEXT NOT NULL,
+        youtube_url TEXT,
+        created_at TEXT NOT NULL,
+        FOREIGN KEY (course_id) REFERENCES Course(course_id)
+    ); 
     ''')
 
     # Assignment Table
     cur.execute('''
     CREATE TABLE IF NOT EXISTS Assignment (
         assignment_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        due_date TEXT,
         course_id INTEGER NOT NULL,
-        FOREIGN KEY (course_id) REFERENCES Course(course_id)
+        pdf_file TEXT NOT NULL,
+        due_date TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+    FOREIGN KEY (course_id) REFERENCES Course(course_id)
     );
     ''')
 
@@ -72,16 +87,13 @@ def init_db():
         submission_id INTEGER PRIMARY KEY AUTOINCREMENT,
         assignment_id INTEGER NOT NULL,
         student_id INTEGER NOT NULL,
-        file_url TEXT,
-        nilai REAL,
-        timestamp TEXT,
+        pdf_file TEXT,
+        submission_time TEXT,
+        grade TEXT,
         FOREIGN KEY (assignment_id) REFERENCES Assignment(assignment_id),
-        FOREIGN KEY (student_id) REFERENCES Student(student_id),
-        UNIQUE(assignment_id, student_id)
+        FOREIGN KEY (student_id) REFERENCES Student(student_id)
     );
     ''')
-
-
 
     conn.commit()
     conn.close()
